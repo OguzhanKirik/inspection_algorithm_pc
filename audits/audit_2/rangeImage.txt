@@ -1,0 +1,22 @@
+header: 
+seq: 0 stamp: 0 frame_id: 
+points[]: 5428452
+width: 2204
+height: 2463
+sensor_origin_: 0 0 0
+sensor_orientation_: 0 0 0 1
+is_dense: 0
+angular resolution: 0.01deg/pixel in x and 0.01deg/pixel in y.
+
+
+image_offset_x: 17374
+image_offset_y: 7820
+max_range: 1009.27
+min_range: 610.373
+Profilometer Pose
+position_x: 1312.01
+position_y: -472.505
+position_z: 907.532
+axis_x: -2.65876
+axis_y: 1.36754
+axis_z: -0.132953
