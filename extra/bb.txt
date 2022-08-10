@@ -1,0 +1,44 @@
+  //     // std::vector<drillTarget> drillTargetCAD_set = setParameters(drillTargets_CAD);
+    //     // Eigen::Affine3f sensorPose_ = calculateProfilometerPose(drillTargetCAD_set,params);
+    //     // pcl::PointCloud<pcl::PointXYZ>::Ptr border_points = createRangeImageBorderExtaction(drillTargetCAD_set,params,sensorPose_,cloudPath); // Extract border points
+    //     // showBorderPoints(border_points);
+
+
+
+    //     // std::vector<std::vector<float>> coeffs;
+    //     // int count = 1000;
+    //     // while(count > 20){
+    //     //     //std::vector<float> coeff = segmentLine(border_points);
+        
+
+    //     // // Segment a line
+    //     // pcl::ModelCoefficients::Ptr coefficients (new pcl::ModelCoefficients);
+    //     // pcl::PointIndices::Ptr inliers (new pcl::PointIndices);
+    //     // // Create the segmentation object
+    //     // pcl::SACSegmentation<pcl::PointXYZ> seg;
+    //     // // Optional
+    //     // seg.setOptimizeCoefficients (true);
+    //     // // Mandatory
+    //     // seg.setModelType (pcl::SACMODEL_LINE);
+    //     // seg.setMethodType (pcl::SAC_RANSAC);
+    //     // seg.setMaxIterations(1000);
+    //     // seg.setDistanceThreshold (1);
+    //     // seg.setInputCloud (border_points);
+    //     // seg.segment (*inliers, *coefficients);
+
+    //     // std::vector<float> coeff{coefficients->values[0],coefficients->values[1],coefficients->values[2], coefficients->values[3],coefficients->values[4],coefficients->values[5]};
+
+    //     //  //Remove the planar inliers, extract the rest
+    //     // pcl::ExtractIndices<pcl::PointXYZ> extract;
+    //     // extract.setInputCloud (border_points);
+    //     // extract.setIndices (inliers);
+    //     // extract.setNegative (true);
+    //     // extract.filter (*border_points);
+
+    //     // showBorderPoints(border_points);
+    //     // count = inliers->indices.size();
+    //     // coeffs.emplace_back(coeff);
+    //     // }
+
+
+    //     // std::cout << "done" << std::endl;

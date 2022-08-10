@@ -1,0 +1,60 @@
+           /*
+    
+        std::vector<pcl::PointXYZ> add_lines;
+        pcl::PointCloud<pcl::Normal>::Ptr cloud_normal(new pcl::PointCloud<pcl::Normal>);
+
+         std::vector<drillTarget> drillTargets_CAD_audit_set = setParameters(drillTargets_CAD_audit);
+        for (size_t i = 0; i < drillTargets_CAD_audit_set.size(); i++){
+
+            Eigen::Vector3f position_{drillTargets_CAD_audit_set.at(i).position[0],drillTargets_CAD_audit_set.at(i).position[1],(drillTargets_CAD_audit_set.at(i).position[2]+10)};
+            Eigen::Vector3f position_shift{0,0,-25};
+            Eigen::Vector3f position_second = drillTargets_CAD_audit_set.at(i).rotation_matrix * position_shift;
+           Eigen::Vector3f position_second_= position_ + position_second;
+            pcl::PointXYZ p_second{position_second_[0],position_second_[1],position_second_[2]};
+            pcl::PointXYZ p_first{drillTargets_CAD_audit_set.at(i).position[0],drillTargets_CAD_audit_set.at(i).position[1],drillTargets_CAD_audit_set.at(i).position[2]};
+            add_lines.emplace_back(p_first);
+            add_lines.emplace_back(p_second);
+
+            Eigen::Vector3f p_dif = p_first.getArray3fMap() - p_second.getArray3fMap();
+            p_dif.normalize();
+            Eigen::Vector3f normals{p_dif.x(),p_dif.y(),p_dif.z()};
+            drillTargets_CAD_audit_set.at(i).normals = normals;
+            pcl::Normal n{p_dif.x(),p_dif.y(),p_dif.z()};
+            cloud_normal->points.emplace_back(n);
+        }
+
+
+        std::string points_new =  "/home/oguz/vs_code/test_audit_0/drillTargets_cluster_1_newQuartenion.txt";
+        std::ofstream file_new (points_new);
+        file_new   <<" x " << " y "<<" z "<<" nx " <<" ny "<<" nz " <<std::endl;
+            for(const auto dt : drillTargets_CAD_audit_set){
+        file_new << dt.position.x() <<";"<< dt.position.y() <<";"<<dt.position.z() <<";"
+         <<";"<< dt.normals.x()<<";"<< dt.normals.y() <<";"<< dt.normals.z()  << std::endl;
+        }
+        file_new.close();
+
+    
+
+    std::string cloudPath = "/home/oguz/vs_code/dense_16_12/dense_acquisition/PointCloud_0.pcd";
+    pcl::PointCloud<pcl::PointXYZ>::Ptr cloud (new pcl::PointCloud<pcl::PointXYZ>);
+    if (pcl::io::loadPCDFile<pcl::PointXYZ> (cloudPath, *cloud) == -1){
+        throw std::runtime_error("Couldn't read cloud pcd file \n");}
+
+    pcl::visualization::PCLVisualizer::Ptr viewer (new pcl::visualization::PCLVisualizer ("3D Viewer"));
+    viewer->setBackgroundColor (0, 0, 0);
+    pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZ> color3(cloud, 144, 144, 255);
+    viewer->addPointCloud<pcl::PointXYZ> (cloud, color3, "cloud_test");
+    //viewer->addPointCloudNormals<pcl::PointXYZ, pcl::Normal> (cloud, cloud_normal, 10, 0.05, "normals");
+
+    
+    for (int i = 1; i < add_lines.size(); i+=2){
+        viewer->addLine(add_lines.at(i-1),add_lines.at(i),90.0,4.0,90.0,cv::format("line_%d",i));
+    }
+    /*
+        for (int i = 1; i < add_arrows.size(); i+=2){
+    viewer->addArrow(add_arrows.at(i-1),add_arrows.at(i),90.0,4.0,90.0,cv::format("line_%d",i));
+        }
+        */
+    while (!viewer->wasStopped ()) {viewer->spinOnce ();}   
+
+*/
